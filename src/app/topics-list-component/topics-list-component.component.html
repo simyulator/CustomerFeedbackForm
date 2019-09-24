@@ -1,0 +1,43 @@
+<div class="container">
+    <div >
+        <h1>List Topics</h1>
+        <button class="btn btn-primary" style="float:right"
+            [routerLink]="['/addTopic']">
+            Add topic
+        </button>
+    </div>
+    <div >
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>TicketID</th>
+                    <th>Topics</th>
+                    <th>Edit</th>
+                    <th>Del</th>
+                    <th>Feedback</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor='let data of customers'>
+                    <td>{{ data.topicID }}</td>
+                    <td>{{ data.topicName }}</td>
+                    <td>
+                        <button class='btn btn-info '>
+                            Edit
+                        </button>
+                    </td>
+                    <td>
+                        <button class='btn btn-danger'>
+                            Delete
+                        </button>
+                    </td>
+                    <td>
+                        <button class='btn btn-success'>
+                            Feedback
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
