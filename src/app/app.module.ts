@@ -1,18 +1,22 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TopicsListComponent } from './topics-list-component/topics-list-component.component';
+import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { FeedbackListComponent } from './feedback-list/feedback-list.component';
+import { FeedbackFormComponent } from './feedback-form/feedback-form.component';
 import { TopicFormComponent } from './topic-form-component/topic-form-component.component';
+import { TopicsListComponent } from './topics-list-component/topics-list-component.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TopicsListComponent,
+    FeedbackListComponent,
+    FeedbackFormComponent,
     TopicFormComponent,
-    TopicFormComponent
+    TopicsListComponent
   ],
   imports: [
     BrowserModule,
@@ -21,6 +25,6 @@ import { TopicFormComponent } from './topic-form-component/topic-form-component.
     FormsModule
   ],
   providers: [],
-  bootstrap: [TopicsListComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
