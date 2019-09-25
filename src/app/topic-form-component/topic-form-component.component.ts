@@ -25,17 +25,17 @@ export class TopicFormComponent implements OnInit {
     });
   }
 
-  saveProduct(): void {
-      if (this.topicForm.dirty) {
-        const p = { ...this.customer, ...this.topicForm.value };
-        console.log('p = ' + p);
-        this.customerService.createProduct(p)
-        .subscribe({
-          next: () => this.onSaveComplete(),
-          error: err => this.errorMessage = err
-        });
-    }
-  }
+  // saveProduct(): void {
+  //     if (this.topicForm.dirty) {
+  //       const p = { ...this.customer, ...this.topicForm.value };
+  //       console.log('p = ' + p);
+  //       this.customerService.createProduct(p)
+  //       .subscribe({
+  //         next: () => this.onSaveComplete(),
+  //         error: err => this.errorMessage = err
+  //       });
+  //   }
+  // }
 
   onSaveComplete(): void {
     // Reset the form to clear the flags

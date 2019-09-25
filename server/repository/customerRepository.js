@@ -10,6 +10,13 @@ class CustomerRepository {
         .then(p=>p).catch(error=>console.log(error))
     }
 
+    getCustomerById(id){
+        console.log("IN Repository");
+        return Customer.findOne({"topicID":id}).then((custo => {
+            console.log(custo);
+        }));
+        }
+
     update(topic, id){
         return Product.findOneAndUpdate(
             {"productId":id},

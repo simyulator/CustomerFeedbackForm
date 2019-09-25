@@ -2,11 +2,11 @@
     <div class="topic-form">
         <h1 style="text-align: center">TOPIC FORM</h1>
         <div>
-            <form (ngSubmit)="saveProduct()" [formGroup]="topicForm">
+            <form novalidate (ngSubmit)="createProduct()">
                 <div class="form-group row mb-2">
                     <label class="col-md-2 col-form-label">Topic</label>
                     <div class="col-md-8">
-                        <input class="form-control" id="topic" type="text" placeholder="Topic (required)" formControlName="topicName" />
+                        <input class="form-control" id="topic" type="text" placeholder="Topic (required)" />
                         <span>
                             <!-- {{displayMessage.topic}} -->
                         </span>
@@ -15,7 +15,7 @@
                 <div class="form-group row mb-2">
                     <label class="col-md-2 col-form-label">Description</label>
                     <div class="col-md-8">
-                        <input class="form-control" id="description" type="text" placeholder="Description (required)" formControlName="topicDescription"/>
+                        <input class="form-control" id="description" type="text" placeholder="Description (required)"/>
                         <span class="invalid-feedback">
                             <!-- {{displayMessage.description}} -->
                         </span>
@@ -28,4 +28,3 @@
         </div>   
     </div>
 </div>
-       
