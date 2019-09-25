@@ -1,7 +1,8 @@
 <div class="container">
     <div >
         <h1>List Topics</h1>
-        <button class="btn btn-primary" style="float:right">
+        <button class="btn btn-primary" style="float:right"
+            [routerLink]="['/addTopic']">
             Add topic
         </button>
     </div>
@@ -21,7 +22,7 @@
                     <td>{{ data.topicID }}</td>
                     <td>{{ data.topicName }}</td>
                     <td>
-                        <button class='btn btn-info '>
+                        <button class='btn btn-info'>
                             Edit
                         </button>
                     </td>

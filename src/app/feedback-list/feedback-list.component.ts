@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ICustomer } from '../model/customermodel';
-import { CustomerService } from '../services/customer-service.service';
+import { CustomerService } from '../services/service.service';
 
 @Component({
   selector: 'app-feedback-list',
