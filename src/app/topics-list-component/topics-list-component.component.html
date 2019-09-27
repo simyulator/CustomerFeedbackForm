@@ -22,12 +22,12 @@
                     <td>{{ data.topicID }}</td>
                     <td>{{ data.topicName }}</td>
                     <td>
-                        <button class='btn btn-info '>
+                        <button class='btn btn-info ' [routerLink]="['/editTopic']">
                             Edit
                         </button>
                     </td>
                     <td>
-                        <button class='btn btn-danger'>
+                        <button class='btn btn-danger' (click)="deleteTopic(data.topicID)">
                             Delete
                         </button>
                     </td>

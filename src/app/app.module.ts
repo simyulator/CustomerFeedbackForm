@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { TopicsListComponent } from './topics-list-component/topics-list-component.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TopicFormComponent } from './topic-form-component/topic-form-component.component';
+import { EditTopicComponent } from './edit-topic-component/edit-topic-component.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TopicsListComponent,
-    TopicFormComponent
+    TopicFormComponent,
+    EditTopicComponent
   ],
   imports: [
     BrowserModule,

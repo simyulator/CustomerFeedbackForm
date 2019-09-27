@@ -1,10 +1,8 @@
 <div class="container">
     <div class="topic-form">
-        <h1 style="text-align: center">TOPIC FORM</h1>
-        
+        <h1 style="text-align: center">TOPIC EDIT FORM</h1>
         <div>
-            <form (ngSubmit)="saveProduct()" [formGroup]="topicForm">
-                <label>TicketID : {{ i }}</label>
+            <form (ngSubmit)="updateProduct()" [formGroup]="topicForm">
                 <div class="form-group row mb-2">
                     <label class="col-md-2 col-form-label">Topic</label>
                     <div class="col-md-8">
@@ -20,7 +18,7 @@
                 <button class="btn btn-primary mr-3" style="width:80px;" type="submit" >
                     Submit
                 </button>
-            </form>
+            </form>     
         </div>   
     </div>
 </div>

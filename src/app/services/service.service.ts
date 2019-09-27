@@ -20,10 +20,30 @@ export class CustomerService {
   }
 
   public createProduct(product: ICustomer): Observable<ICustomer> {
-    console.log('createproduct running');
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
     return this._http.post<ICustomer>('http://localhost:3000/users', product, {headers})
     .pipe(tap (data => console.log('Create product is successful' + JSON.stringify(data))), catchError(this.handleError));
+  }
+
+  deleteTopic(topicID: number): Observable<{}> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const url = `http://localhost:3000/users/${topicID}`;
+    console.log('url = ' + url);
+    return this._http.delete<ICustomer>(url, { headers })
+    .pipe(
+      tap(data => console.log('deleteTopic: ' + topicID)),
+      catchError(this.handleError)
+    );
+  }
+
+  public updateTopic(topicID: number): Observable<ICustomer> {
+    const headers = new HttpHeaders({'Content-Type': 'application/json'});
+    const url = `http://localhost:3000/users/${topicID}`;
+    return this._http.put<ICustomer>(url, {headers})
+    .pipe(
+      tap(data => console.log('updateTopic: ' + topicID)),
+      catchError(this.handleError)
+    );
   }
 
   private handleError(err: ErrorEvent) {
