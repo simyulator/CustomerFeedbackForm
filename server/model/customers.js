@@ -10,4 +10,11 @@ const customerSchema = new Schema({
         feedback: String
     }]
 })
-module.exports = mongoose.model('user', customerSchema);
+
+
+var user = mongoose.model('user', customerSchema);
+
+module.exports = user;
+
+// module.exports = mongoose.model('user', customerSchema);
+// module.exports = mongoose.model('login', customerLoginSchema);

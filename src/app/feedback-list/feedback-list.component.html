@@ -1,0 +1,51 @@
+<div class="container">
+    <div >
+        <h1 style="text-align: center">{{pageTitle}}</h1><br>
+        <h2 style="text-align: center; font-size: 5">{{pageDes}}</h2><br>
+        <h3>Ticket Id {{idOfTopic}}</h3>
+        <button class="btn btn-primary" [routerLink]="['/feedbackadd', idOfTopic]" style="float: right; margin-right: 16px">
+            Add Feedback
+        </button>
+
+        <button class="btn btn-primary" style="float: right; margin-right: 16px">
+            Email Feedback
+        </button>
+
+    </div>
+    <div >
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Feed ID</th>
+                    <th>Respondent</th>
+                    <th>Feedback</th>
+                    <th>Edit</th>
+                    <th>Del</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- <ng-container *ngFor='let data of customerList'> -->
+                    <tr *ngFor='let d of feedbackList'>
+                            <td>{{ d.feedID }}</td>
+                            <td>{{ d.respondent }}</td>
+                            <td>{{d.feedback}}</td>
+                            <td>
+                                <button class='btn btn-info' [routerLink]="['/feedbackedit', idOfTopic, d.feedID]">
+                                    Edit
+                                </button>
+                            </td>
+                            <td>
+                                <button class='btn btn-danger' (click)='deleteFeedback(d.feedID)'>
+                                    Delete
+                                </button>
+                            </td>
+                            
+                    </tr>
+                <!-- </ng-container> -->
+
+                    
+                
+            </tbody>
+        </table>
+    </div>
+</div>

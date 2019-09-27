@@ -26,7 +26,7 @@ export class EditTopicComponent implements OnInit {
 
   updateProduct(): void {
     if (this.topicForm.dirty) {
-      
+
     }
   }
 

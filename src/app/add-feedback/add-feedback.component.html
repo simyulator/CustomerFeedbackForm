@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="topic-form">
+        <h1 style="text-align: center">FEEDBACK FORM</h1>
+        <div>
+            <form novalidate (ngSubmit)="sendEditedCustomerData()">
+                <div class="form-group row mb-2">
+                    <label class="col-md-2 col-form-label">Name</label>
+                    <div class="col-md-8">
+                        <input class="form-control" [(ngModel)]='newRes' (keyup)='editCustomerData()' name="topic" type="text" placeholder="Name (required)" />
+                        <span>
+                        </span>
+                    </div>
+                </div>     
+                <div class="form-group row mb-2">
+                    <label class="col-md-2 col-form-label">E-mail</label>
+                    <div class="col-md-8">
+                        <input class="form-control" id="description" type="text" placeholder="E-mail (required)" name="mail"/>
+                        <span class="invalid-feedback">
+        
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group row mb-2">
+                    <label class="col-md-2 col-form-label">Feedback</label>
+                    <div class="col-md-8">
+                        <input class="form-control" [(ngModel)]='newFed' id="description" type="text" name ="feed" (keyup)='editCustomerData()' placeholder="Feedback"/>
+                        <span class="invalid-feedback">
+                        </span>
+                    </div>
+                </div>
+                <button class="btn btn-primary mr-3" style="width:80px;" type="submit" (click)='copyCustomerData()'>
+                    Submit
+                </button>
+            </form>     
+        </div>   
+    </div>
+</div>

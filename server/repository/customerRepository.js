@@ -10,19 +10,25 @@ class CustomerRepository {
             {"topicID" : id}
         ).then(user => user);
     }
-    addNewTopic(data) {
-        return Customer.create(data)
-        .then(p=>p).catch(error=>console.log(error))
-    }
-    update(topic, id){
-        return Customer.findOneAndUpdate(
-            {"productId":id},
-            {$set:product}
-        )
-    }
+  
     remove(id) {
         return Customer.findOneAndDelete({"topicID" : id});
     }
+
+
+    addNewTopic(data){
+        return Customer.create(data)
+        .then(p=>p).catch(error=>console.log(error))
+    }
+
+    update(topic, id){
+        console.log(topic);
+        return Customer.findOneAndUpdate(
+            {"topicID":id},
+            {$set:topic}
+        )
+    }
+
 }
 
 module.exports = new CustomerRepository();

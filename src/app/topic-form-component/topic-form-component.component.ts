@@ -18,6 +18,18 @@ export class TopicFormComponent implements OnInit {
   errorMessage: string;
   customers: ICustomer[];
   i: number;
+  topicTitle = '';
+  topicDes = '';
+
+  newTopic: ICustomer = {
+    topicID: 0,
+    topicName: '',
+    topicFeedbacks: [{
+        feedID: 0,
+        respondent: '',
+        feedback: ''
+    }]
+  };
 
   // tslint:disable-next-line: variable-name
   constructor(private fb: FormBuilder, private router: Router, private _customerService: CustomerService) {}
@@ -26,13 +38,12 @@ export class TopicFormComponent implements OnInit {
     this._customerService.getCustomerData()
     .subscribe((customers: ICustomer[]) => {
       this.customers = customers;
+      this.topicForm = this.fb.group({
+        topicName: '',
+        topicDescription: '',
+      });
+      this.randomNumber();
     });
-
-    this.topicForm = this.fb.group({
-      topicName: '',
-      topicDescription: '',
-    });
-    this.randomNumber();
   }
 
   randomNumber() {
@@ -50,21 +61,29 @@ export class TopicFormComponent implements OnInit {
     return false;
   }
 
-  saveProduct(): void {
-    if (this.checkDuplicateID(this.i)) {
-      this.randomNumber();
-    }
-    if (this.topicForm.dirty) {
-        let q: any;
-        const p = { ...this.customer, ...this.topicForm.value };
-        q = { topicID: this.i, topicName: p.topicName};
-        console.log(q);
-        this._customerService.createProduct(q)
-        .subscribe({
-          next: () => this.onSaveComplete(),
-          error: err => this.errorMessage = err
-        });
-    }
+  // saveProduct(): void {
+  //   if (this.checkDuplicateID(this.i)) {
+  //     this.randomNumber();
+  //   }
+  //   if (this.topicForm.dirty) {
+  //       let q: any;
+  //       const p = { ...this.customer, ...this.topicForm.value };
+  //       q = { topicID: this.i, topicName: p.topicName};
+  //       console.log(q);
+  //       this._customerService.createProduct(q)
+  //       .subscribe({
+  //         next: () => this.onSaveComplete(),
+  //         error: err => this.errorMessage = err
+  //       });
+  //   }
+  createTopic() {
+    console.log(this.topicTitle);
+    console.log(this.topicDes);
+    this.newTopic.topicName = this.topicTitle;
+    this._customerService.createProduct(this.newTopic).subscribe(data => {
+      console.log(data);
+    });
+    // this.newTopic.to
   }
 
   onSaveComplete(): void {

@@ -1,0 +1,43 @@
+<!-- <form (submit)="loginUser($event)">
+        <div class="container">
+        <div>
+       <input type="text" autocomplete="off" placeholder="Username" id="username">
+        </div>
+        <div>
+         <input type="password" autocomplete="off" placeholder="Password" id="password">
+        </div>
+        <div>
+          <button type="submit" id="submit">Submit</button>
+        </div>
+      </div>
+</form> -->
+
+<br><br>
+<img class="center">
+
+<div class="container1">
+<div class="container">
+  <h1 class="hh1">Sign in to Reddit</h1><br>
+   <form>
+    <div class="form-group">
+      <label class="ll1" for="email">Email</label>
+      <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" (blur)="setMail(id.value)" #id>
+      
+    </div>
+    <div class="form-group">
+      <label class="ll2" for="pwd">Password</label>
+      <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd" (blur)="setPass(pass.value)" #pass>
+      
+    </div>
+    
+    <br>
+  
+    
+    <button type="button" class="btn btn-primary" (click)="getRes()">Submit</button>
+    
+
+  </form> <br>
+  <span class="nn">New to Reddit? </span> <a [routerLink]="['/signup']">Create an account</a>
+  
+</div>
+</div>

@@ -24,8 +24,6 @@ export class TopicsListComponent implements OnInit {
     });
   }
 
-
-
   deleteTopic(id: number): void {
     if (confirm(`Really delete this topic?`)) {
         this._customerService.deleteTopic(id)

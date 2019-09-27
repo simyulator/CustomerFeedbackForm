@@ -1,7 +1,9 @@
 const customerRepository = require('../repository/customerRepository');
+const custLoginRepo = require('../repository/customerLoginRepository');
 
 module.exports = (app) => {
     app.get('/users', (req, res)=> {
+        console.log("Users");
         customerRepository.getAllCustomers()
         .then(users=>res.json(users))
     })
@@ -25,5 +27,55 @@ module.exports = (app) => {
         customerRepository.update(req.body, req.params.id)   //req.body will give us the json object and param.id will give us the value
         .then(data=> res.json(data));
     })
+    // app.get('/users/:id',(req,res)=>{
+    //     console.log("In GET");
+    //     console.log(req.params.id);
+    //     a = customerRepository.getCustomerById(req.params.id).then(cust =>{
+    //         // console.log("In Get In" + cust);
+    //         res.json(cust)})
+
+    //         // console.log("After Get " + a);
+    //     }
+            
+        // )
+        // app.put('/users/:id',(req,res)=>{
+        //     console.log("In put");
+        //     console.log(req.params.id);
+        //     customerRepository.update(req.body,req.params.id)
+        //     .then(custo=>{
+        //         console.log(custo)
+        //         res.json(custo)})
+        //     })
+
+
+
+//    ______________________            LOGIN FUNCS             ________________
+
+
+
+            app.get('/logins', (req, res)=> {
+                console.log("Logins");
+                custLoginRepo.getAllLogins().then(users=>res.json(users))
+            })
+
+            
+
+                app.post('/logins', (req, res) => {
+                    console.log(req.body);
+                    custLoginRepo.addNewLogin(req.body)
+                    .then(data => res.json(data))
+                })
+
+                app.get('/logins/:email',(req,res)=>{
+                    console.log("In Mail GET");
+                    console.log(req.params.email);
+                    a = custLoginRepo.getLoginByMail(req.params.email).then(mail =>{
+                        // console.log("In Get In" + cust);
+                        res.json(mail)})
+            
+                        // console.log("After Get " + a);
+                    }
+                        
+                    )
 }
 

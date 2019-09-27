@@ -1,0 +1,39 @@
+
+
+<br><br>
+<div class="container">
+    <a routerLink=""><img class="barimg" src="{{backimg}}"></a>
+    <h1>Join Reddit!</h1>
+    <h3>The most trusted.</h3><br><br>
+    <h3>Create your personal account</h3>
+    <form class="container" [formGroup]="form">
+      <div class="form-group">
+        <label for="email">Email<span class="ast"> *</span></label>
+        <input type="email" class="form-control" formControlName="email" placeholder="Enter email" name="email" #mail>
+        <p class="s1">We'll never share your email address with anyone.</p>
+      </div>
+      <div class="form-group">
+          <label for="text">Username<span class="ast"> *</span></label>
+          <input type="text" class="form-control" formControlName="n" placeholder="Enter Username" name="n" #name>
+          <p class="s1">Enter your name as per Govt ID.</p>
+        </div>
+
+      <div class="form-group">
+        <label for="pwd">Password<span class="ast"> *</span></label>
+        <input type="password" class="form-control" formControlName="pswd" placeholder="Enter password" name="pswd" #pass>
+        <p class="s1">Make sure it's more than 15 characters OR at least 8<br> characters including a number and a lowercase letter. </p>
+      </div>
+      
+      
+      <div class="form-group form-check">
+        <label class="form-check-label">
+          <input class="form-check-input" type="checkbox" name="remember">Remember me
+        </label>
+      </div>
+      <button type="button" class="btn btn-primary" (click)="postItem(mail.value,name.value,pass.value)" [disabled]="!form.valid">Submit</button>
+      <!-- <input type="submit" value="Submit" [disabled]="!form.valid"> -->
+    </form>
+  </div>
+  
+  <br><br>
+ 
