@@ -20,6 +20,10 @@ class CustomerRepository{
             )
         }
 
+        save(product){
+            return new Product().create(product).then(p=>p).catch(error=>console.log(error))
+        }
+
 
 }
 
