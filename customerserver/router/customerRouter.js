@@ -13,6 +13,11 @@ module.exports = (app) =>{
     //     })
     // })
 
+    app.post('/users',(req,res)=>{
+        customerRepository.save(req.body)
+        .then(custo=>res.json(custo))
+        })
+
     app.get('/users/:id',(req,res)=>{
         console.log("In GET");
         customerRepository.getCustomerById(req.params.id)

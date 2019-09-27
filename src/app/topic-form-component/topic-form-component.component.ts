@@ -15,31 +15,42 @@ export class TopicFormComponent implements OnInit {
   topicForm: FormGroup;
   customer: ICustomer;
   errorMessage: string;
+  topicTitle = '';
+  topicDes = '';
+
+  newTopic: ICustomer = {
+    topicID: 0,
+    topicName: '',
+    topicFeedbacks: [{
+        feedID: 0,
+        respondent: '',
+        feedback: ''
+    }]
+  };
 
   constructor(private fb: FormBuilder, private route: ActivatedRoute, private router: Router, private customerService: CustomerService) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.topicForm = this.fb.group({
       topicName: '',
       topicDescription: ''
     });
   }
 
-  // saveProduct(): void {
-  //     if (this.topicForm.dirty) {
-  //       const p = { ...this.customer, ...this.topicForm.value };
-  //       console.log('p = ' + p);
-  //       this.customerService.createProduct(p)
-  //       .subscribe({
-  //         next: () => this.onSaveComplete(),
-  //         error: err => this.errorMessage = err
-  //       });
-  //   }
-  // }
+  createTopic() {
+    console.log(this.topicTitle);
+    console.log(this.topicDes);
+    this.newTopic.topicName = this.topicTitle;
+    this.customerService.createProduct(this.newTopic).subscribe(data => {
+      console.log(data);
+    })
+    // this.newTopic.to
+  }
 
   onSaveComplete(): void {
     // Reset the form to clear the flags
     this.topicForm.reset();
     this.router.navigate(['/products']);
+
   }
 }

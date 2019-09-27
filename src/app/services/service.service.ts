@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, pipe, throwError } from 'rxjs';
 import {ICustomer} from '../model/customermodel';
 import { tap, catchError, map } from 'rxjs/operators';
+import { ILoginData } from '../model/loginmodel';
 // import { IHouseModel } from '../model/houseModel';
 
 @Injectable({
@@ -19,10 +20,32 @@ export class CustomerService {
     );
   }
 
-  updateCustomerData(customer: ICustomer): Observable<ICustomer> {
+  getCustomerDataById(customer: ICustomer): Observable<ICustomer[]> {
+    return this._httpclient.get<ICustomer[]>(
+      `http://localhost:3000/users/${customer.topicID}`
+    );
+  }
+
+  getLoginDataByMail(login: string): Observable<ILoginData> {
+    console.log(login);
+    return this._httpclient.get<ILoginData>(
+      `http://localhost:3000/logins/${login}`
+    );
+  }
+
+  postLoginDataByMail(login: ILoginData): Observable<ILoginData> {
+    const headers = new HttpHeaders({'Content-Type': 'application/json'}); // MIME TYPE
+    return this._httpclient.post<ILoginData>(`http://localhost:3000/logins`, login, {headers})
+    .pipe(tap (data => console.log('Create Product is Successful' + JSON.stringify(data))),
+    catchError(this.handleError));
+  }
+
+  updateCustomerData(id: number, customer: ICustomer): Observable<ICustomer> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    const url = `http://localhost:3000/users/${customer.topicID}`;
-    return this._httpclient.put<ICustomer>(url, customer, { headers })
+    console.log(customer);
+    console.log(id);
+    // const url =
+    return this._httpclient.put<ICustomer>(`http://localhost:3000/users/${id}`, customer, { headers })
     .pipe(
     tap(() => console.log('updateProduct: ' + customer.topicID)),
     // Return the product on an update
@@ -31,6 +54,16 @@ export class CustomerService {
     );
 
   }
+
+  public createProduct(customer: ICustomer): Observable<ICustomer> {
+
+    const headers = new HttpHeaders({'Content-Type': 'application/json'}); // MIME TYPE
+    return this._httpclient.post<ICustomer>(`http://localhost:3000/users`, customer, {headers})
+    .pipe(tap (data => console.log('Create Product is Successful' + JSON.stringify(data))),
+    catchError(this.handleError));
+  }
+
+
 
 
   private handleError(err: ErrorEvent) {

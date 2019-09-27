@@ -5,24 +5,26 @@ class CustomerRepository {
         return Customer.find({}).then(users => users);
     }
 
+
     addNewTopic(data){
-        return new Product().save(data)
+        return Customer.create(data)
         .then(p=>p).catch(error=>console.log(error))
     }
 
     getCustomerById(id){
         console.log("IN Repository");
-        return Customer.findOne({"topicID":id}).then((custo => {
-            console.log(custo);
-        }));
+        console.log(id);
+        return Customer.find({"topicID":id}).then((custo => custo));
         }
 
     update(topic, id){
-        return Product.findOneAndUpdate(
-            {"productId":id},
-            {$set:product}
+        console.log(topic);
+        return Customer.findOneAndUpdate(
+            {"topicID":id},
+            {$set:topic}
         )
     }
+
 }
 
 module.exports = new CustomerRepository();

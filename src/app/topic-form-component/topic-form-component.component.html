@@ -2,11 +2,11 @@
     <div class="topic-form">
         <h1 style="text-align: center">TOPIC FORM</h1>
         <div>
-            <form novalidate (ngSubmit)="createProduct()">
+            <form novalidate (ngSubmit)="createTopic()">
                 <div class="form-group row mb-2">
                     <label class="col-md-2 col-form-label">Topic</label>
                     <div class="col-md-8">
-                        <input class="form-control" id="topic" type="text" placeholder="Topic (required)" />
+                        <input class="form-control" [(ngModel)]='topicTitle' name="topic" type="text" placeholder="Topic (required)" />
                         <span>
                             <!-- {{displayMessage.topic}} -->
                         </span>
@@ -15,7 +15,7 @@
                 <div class="form-group row mb-2">
                     <label class="col-md-2 col-form-label">Description</label>
                     <div class="col-md-8">
-                        <input class="form-control" id="description" type="text" placeholder="Description (required)"/>
+                        <input class="form-control" [(ngModel)]='topicDes' name="description" type="text" placeholder="Description (required)"/>
                         <span class="invalid-feedback">
                             <!-- {{displayMessage.description}} -->
                         </span>

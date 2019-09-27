@@ -4,14 +4,20 @@ import { TopicsListComponent } from './topics-list-component/topics-list-compone
 import { TopicFormComponent } from './topic-form-component/topic-form-component.component';
 import { FeedbackListComponent } from './feedback-list/feedback-list.component';
 import { FeedbackFormComponent } from './feedback-form/feedback-form.component';
+import { AddFeedbackComponent } from './add-feedback/add-feedback.component';
+import { LoginFormComponent } from './login-form/login-form.component';
+import { SignupFormComponent } from './signup-form/signup-form.component';
 
 
 const routes: Routes = [
   {path: 'addTopic', component: TopicFormComponent},
-  {path: '', component: TopicsListComponent},
+  {path: '', component: LoginFormComponent},
   {path: 'topicList', component: TopicsListComponent},
-  {path: 'feedback', component: FeedbackListComponent},
-  {path: 'feedback/:topicID/edit', component: FeedbackFormComponent}
+  {path: 'feedback/:topicID', component: FeedbackListComponent},
+  {path: 'feedbackedit/:topicID/:feedID', component: FeedbackFormComponent},
+  {path: 'feedbackadd/:topicID', component: AddFeedbackComponent},
+  {path: 'login', component: LoginFormComponent},
+  {path: 'signup', component: SignupFormComponent}
 ];
 
 @NgModule({

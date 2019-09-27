@@ -1,0 +1,22 @@
+input{
+    width: 30%
+}
+.s1{
+    font-size: 12px;
+    align-content: justify;
+}
+/* p{
+    font-size: 1px;
+} */
+.btn{
+    background-color: green;
+}
+/* .container{
+    background-image: url("/assets/image/signupimg1.jpg");
+} */
+.barimg{
+    margin-left: -20px;
+}
+.ast{
+    color: red;
+}
