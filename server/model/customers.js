@@ -4,9 +4,11 @@ const Schema = mongoose.Schema;
 const customerSchema = new Schema({
     topicID: Number,
     topicName: String,
+    topicDescription: String,
     topicFeedbacks: [{
         feedID: Number,
         respondent: String,
+        email: String,
         feedback: String
     }]
 })

@@ -14,6 +14,7 @@ export class TopicsListComponent implements OnInit {
   customers: ICustomer[];
   errorMessage: string;
   topicEditForm: FormGroup;
+  id: number;
   // tslint:disable-next-line: variable-name
   constructor(private fb: FormBuilder, private router: Router, private _customerService: CustomerService) { }
 
@@ -25,11 +26,38 @@ export class TopicsListComponent implements OnInit {
   }
 
   deleteTopic(id: number): void {
+    this.id = id;
+    // this.deleteFeedback();
     if (confirm(`Really delete this topic?`)) {
         this._customerService.deleteTopic(id)
-        .subscribe({
-          error: err => this.errorMessage = err
+        .subscribe(() => {
+          this.router.navigate(['/topicList']);
+          // error: err => this.errorMessage = err;
+          this.deleteFeedback();
         });
       }
+  }
+
+  deleteFeedback() {
+    // this.idFeed = feedID;
+    this.customers.forEach(c => {
+      if (c.topicID === this.id) {
+            this.deleteByAttr(this.customers, 'topicID', this.id);
+      }
+    });
+    console.log(this.customers);
+    // this.updateCustomer();
+  }
+
+  deleteByAttr(arr, attr, value) {
+    let i = arr.length;
+    while (i--) {
+       if (arr[i] && arr[i].hasOwnProperty(attr) && (arguments.length > 2 && arr[i][attr] === value ) ) {
+
+           arr.splice(i, 1);
+
+       }
+    }
+    return arr;
   }
 }

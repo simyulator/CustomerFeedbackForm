@@ -51,6 +51,7 @@ export class FeedbackListComponent implements OnInit {
     this.customerList.forEach(c => {
       if (c.topicID === id) {
         this.pageTitle = c.topicName;
+        this.pageDes = c.topicDescription;
         this.feedbackList = c.topicFeedbacks;
       }
     });
@@ -79,6 +80,7 @@ export class FeedbackListComponent implements OnInit {
       }
     });
     console.log(this.customerList);
+    this.updateCustomer();
   }
 
   deleteByAttr(arr, attr, value) {

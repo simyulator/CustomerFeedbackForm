@@ -1,3 +1,8 @@
+<br><br>
+        <button class='btn btn-info' [routerLink]="['/login']">
+          Logout
+      </button>
+
 <div class="container">
     <div class="topic-form">
         <h1 style="text-align: center">TOPIC FORM</h1>
@@ -22,10 +27,15 @@
                         </span>
                     </div>
                 </div>
-                <button class="btn btn-primary mr-3" style="width:80px;" type="submit" >
+                <button class="btn btn-primary mr-3" [disabled]='getDisableStatus()' style="width:80px;" type="submit" >
                     Submit
                 </button>
             </form>
         </div>   
+        
     </div>
+    <br>
+    <button class='btn btn-info' [routerLink]="['/topicList']">
+        Back To Topic List
+    </button>
 </div>

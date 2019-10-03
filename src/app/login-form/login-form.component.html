@@ -13,27 +13,27 @@
 </form> -->
 
 <br><br>
-<img class="center">
+<img class="center" src="{{imgPath}}">
 
 <div class="container1">
 <div class="container">
   <h1 class="hh1">Sign in to Reddit</h1><br>
-   <form>
+   <form (ngSubmit)='getRes()'>
     <div class="form-group">
-      <label class="ll1" for="email">Email</label>
-      <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" (blur)="setMail(id.value)" #id>
+      <label class="ll1" for="email">Email</label><br>
+      <input type="email" [(ngModel)]="email" class="form-control" id="email" placeholder="Enter email" name="email"  #id>
       
     </div>
     <div class="form-group">
-      <label class="ll2" for="pwd">Password</label>
-      <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd" (blur)="setPass(pass.value)" #pass>
+      <label class="ll2" for="pwd">Password</label><br>
+      <input type="password" [(ngModel)]="pass1" class="form-control" id="pwd" placeholder="Enter password" name="pswd"  #pass>
       
     </div>
     
     <br>
   
     
-    <button type="button" class="btn btn-primary" (click)="getRes()">Submit</button>
+    <button type="button" [disabled]='getDisableStatus()' class="btn btn-primary" (click)="getRes()">Submit</button>
     
 
   </form> <br>

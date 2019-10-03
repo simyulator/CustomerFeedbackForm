@@ -24,9 +24,11 @@ export class TopicFormComponent implements OnInit {
   newTopic: ICustomer = {
     topicID: 0,
     topicName: '',
+    topicDescription: '',
     topicFeedbacks: [{
         feedID: 0,
         respondent: '',
+        email: '',
         feedback: ''
     }]
   };
@@ -61,6 +63,13 @@ export class TopicFormComponent implements OnInit {
     return false;
   }
 
+  getDisableStatus(){
+    if (this.topicTitle !== '' && this.topicDes !== '') {
+      return false;
+    }
+    return true;
+  }
+
   // saveProduct(): void {
   //   if (this.checkDuplicateID(this.i)) {
   //     this.randomNumber();
@@ -82,6 +91,7 @@ export class TopicFormComponent implements OnInit {
     this.newTopic.topicName = this.topicTitle;
     this._customerService.createProduct(this.newTopic).subscribe(data => {
       console.log(data);
+      this.router.navigate(['topicList']);
     });
     // this.newTopic.to
   }

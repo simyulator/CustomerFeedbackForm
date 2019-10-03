@@ -15,7 +15,9 @@ input{
     background-image: url("/assets/image/signupimg1.jpg");
 } */
 .barimg{
-    margin-left: -20px;
+    margin-left: 20px;
+    height: 60px;
+    width: 60px;
 }
 .ast{
     color: red;
