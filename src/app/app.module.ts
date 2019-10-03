@@ -13,6 +13,8 @@ import { AddFeedbackComponent } from './add-feedback/add-feedback.component';
 import { SignupFormComponent } from './signup-form/signup-form.component';
 import { EditTopicComponent } from './edit-topic-component/edit-topic-component.component';
 import { LoginFormComponent } from './login-form/login-form.component';
+import { AuthServiceService } from './services/auth-service.service';
+import { CustomerguardGuard } from './customerguard.guard';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,7 @@ import { LoginFormComponent } from './login-form/login-form.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [AuthServiceService, CustomerguardGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

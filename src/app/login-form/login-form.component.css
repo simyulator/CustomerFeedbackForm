@@ -7,24 +7,36 @@
 }
 input{
     width: 25%;
+    display: inline-block;
 }
 .container1{
 
-    margin-left: 42%;
+    text-align: center;
+/* 
+    align-content: center;
+    padding-left:  */
+    /* margin-left: 50%;
+    margin-right: 50%; */
+}
+.container{
+    display: inline-block;
 }
 .hh1{
     font-weight: 100;
 }
 .ll1{
     font-weight: 600;
+    display: inline-block;
     /* font-display: bold; */
 }
 .ll2{
     font-weight: 600;
+    display: inline-block;
     /* font-display: bold; */
 }
 .btn{
     width: 25%;
+    display: inline-block;
 }
 .nn{
     font-weight: 200;

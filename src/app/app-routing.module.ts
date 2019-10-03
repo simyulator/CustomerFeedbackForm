@@ -8,12 +8,14 @@ import { FeedbackFormComponent } from './feedback-form/feedback-form.component';
 import { AddFeedbackComponent } from './add-feedback/add-feedback.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { SignupFormComponent } from './signup-form/signup-form.component';
+import { CustomerguardGuard } from './customerguard.guard';
 
 
 const routes: Routes = [
   {path: 'addTopic', component: TopicFormComponent},
-  {path: '', component: TopicsListComponent},
-  {path: 'topicList', component: TopicsListComponent},
+  // {path: '', component: TopicsListComponent},
+  {path: 'topicList',
+  component: TopicsListComponent},
   {path: 'editTopic', component: EditTopicComponent },
   {path: '', component: LoginFormComponent},
   {path: 'topicList', component: TopicsListComponent},

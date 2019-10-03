@@ -1,3 +1,8 @@
+<br><br>
+        <button class='btn btn-info' [routerLink]="['/login']">
+          Logout
+      </button>
+
 <div class="container">
     <div >
         <h1>List Topics</h1>
@@ -27,7 +32,7 @@
                         </button>
                     </td>
                     <td>
-                        <button class='btn btn-danger' (click)="deleteTopic(data.topicID)">
+                        <button class='btn btn-danger' (click)="deleteTopic(data.topicID)" >
                             Delete
                         </button>
                     </td>

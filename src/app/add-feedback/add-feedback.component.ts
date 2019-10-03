@@ -13,6 +13,7 @@ export class AddFeedbackComponent implements OnInit {
 
   newRes = '';
   newFed = '';
+  newmail = '';
   pageTitle = '';
   private sub: Subscription;
   customerList: ICustomer[];
@@ -24,6 +25,7 @@ export class AddFeedbackComponent implements OnInit {
   newFeed = {
     feedID: 0,
     respondent: '',
+    email: '',
     feedback: ''
   };
   idTopic: number;
@@ -65,7 +67,7 @@ export class AddFeedbackComponent implements OnInit {
 
 
   sendEditedCustomerData() {
-    console.log("djvfjvdshj");
+    console.log();
     console.log(this.newFed);
 
     this.customerList.forEach(c => {
@@ -88,10 +90,12 @@ export class AddFeedbackComponent implements OnInit {
   copyCustomerData() {
     this.newFeed.feedback = this.newFed;
     this.newFeed.respondent = this.newRes;
+    this.newFeed.email = this.newmail;
     this.customerSpecific.topicFeedbacks.push(this.newFeed);
     console.log(this.customerSpecific);
     this._topicService.updateCustomerData(this.customerSpecific.topicID, this.customerSpecific).subscribe(data => {
       console.log(data);
+      this.router.navigate(['feedback/' + this.idTopic]);
     });
   }
 

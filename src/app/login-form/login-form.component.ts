@@ -10,9 +10,12 @@ import { CustomerService } from '../services/service.service';
 })
 export class LoginFormComponent implements OnInit {
 
-  email: string;
-  pass: string;
+  email = '';
+  imgPath = 'assets/image/redditimage.png';
+  pass = '';
+  pass1 = '';
   loginItem: ILoginData;
+  flag = 0;
   access = false;
 
   constructor(private router: Router,
@@ -44,16 +47,20 @@ export class LoginFormComponent implements OnInit {
   }
 
   getRes() {
-    console.log(this.email);
-    console.log(this.pass);
+    // console.log(this.email);
+    // console.log(this.pass);
     this.loginservice.getLoginDataByMail(this.email).subscribe(d => {
-      console.log(d);
+      this.loginItem = d[0];
+      // console.log(this.loginItem.email);
+      console.log(d[0]);
       this.access = true;
-      if (d.password === this.pass) {
+      console.log(d[0].password + ' ' + this.pass1);
+      if (this.loginItem.password === this.pass1) {
+        console.log('In Pass');
+        this.flag = 1;
         this.router.navigate(['/topicList']);
       }
 
-      this.loginItem = d;
     });
     console.log(this.loginItem);
     // if (this.loginItem !== null && this.loginItem.password === this.pass) {
@@ -63,6 +70,12 @@ export class LoginFormComponent implements OnInit {
     // }
     // this.user.email = this.email;
     // this.user.password = this.pass;
+  }
+  getDisableStatus() {
+    if (this.email.includes('@') && this.pass1 !== '') {
+      return false;
+    }
+    return true;
   }
 
 }
