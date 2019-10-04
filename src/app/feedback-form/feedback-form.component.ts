@@ -22,6 +22,7 @@ export class FeedbackFormComponent implements OnInit, AfterViewInit {
   pageTitle = '';
   newRes = 'a';
   newFed = 'a';
+  newMail = '';
   private sub: Subscription;
   customerList: ICustomer[];
   customerSpecific: ICustomer;
@@ -33,6 +34,7 @@ export class FeedbackFormComponent implements OnInit, AfterViewInit {
   productForm: FormGroup;
   res: string;
   fed: string;
+  mail: string;
   private genericValidator: GenericValidator;
 
 
@@ -126,6 +128,7 @@ export class FeedbackFormComponent implements OnInit, AfterViewInit {
       if (tf.feedID === this.idFeed) {
         tf.feedback = this.newFed;
         tf.respondent = this.newRes;
+        tf.email = this.newMail;
       }
 
     });
@@ -169,6 +172,7 @@ export class FeedbackFormComponent implements OnInit, AfterViewInit {
         if (this.idFeed === c.feedID) {
           this.res = c.respondent;
           this.fed = c.feedback;
+          this.mail = c.eMail;
           this.productForm.patchValue({
             name: c.respondent,
             eMail: c.respondent,
@@ -178,5 +182,12 @@ export class FeedbackFormComponent implements OnInit, AfterViewInit {
       });
 
   }
+
+  // getStatus(){
+  //   if(this.newFed !== '' && this.newMail !== '' && this.newRes !== ''){
+  //     return false;
+  //   }
+  //   return true;
+  // }
 
 }

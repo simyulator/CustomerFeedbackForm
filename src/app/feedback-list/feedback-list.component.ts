@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ICustomer } from '../model/customermodel';
 import { CustomerService } from '../services/service.service';
 import { Subscription } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-feedback-list',
@@ -22,7 +22,8 @@ export class FeedbackListComponent implements OnInit {
 
   // tslint:disable-next-line: variable-name
   constructor(private _topicService: CustomerService,
-              private route: ActivatedRoute
+              private route: ActivatedRoute,
+              private router: Router
              ) { }
 
   ngOnInit() {
@@ -93,5 +94,10 @@ export class FeedbackListComponent implements OnInit {
        }
     }
     return arr;
+  }
+
+  logout()  {
+    localStorage.clear();
+    this.router.navigate(['/login']);
   }
 }

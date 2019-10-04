@@ -89,6 +89,8 @@ export class TopicFormComponent implements OnInit {
     console.log(this.topicTitle);
     console.log(this.topicDes);
     this.newTopic.topicName = this.topicTitle;
+    this.newTopic.topicID = this.i;
+    this.newTopic.topicDescription = this.topicDes;
     this._customerService.createProduct(this.newTopic).subscribe(data => {
       console.log(data);
       this.router.navigate(['topicList']);
@@ -100,5 +102,10 @@ export class TopicFormComponent implements OnInit {
     // Reset the form to clear the flags
     this.topicForm.reset();
     this.router.navigate(['']);
+  }
+
+  logout()  {
+    localStorage.clear();
+    this.router.navigate(['/login']);
   }
 }

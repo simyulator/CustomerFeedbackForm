@@ -1,5 +1,5 @@
 <br><br>
-        <button class='btn btn-info' [routerLink]="['/login']">
+        <button class='btn btn-info' (click)='logout()' >
           Logout
       </button>
 
@@ -27,7 +27,7 @@
                     <td>{{ data.topicID }}</td>
                     <td>{{ data.topicName }}</td>
                     <td>
-                        <button class='btn btn-info ' [routerLink]="['/editTopic']">
+                        <button class='btn btn-info ' [routerLink]="['/editTopic', data.topicID]">
                             Edit
                         </button>
                     </td>

@@ -1,4 +1,5 @@
 const Customer = require('../model/customers');
+const Mail = require('../model/mailModel');
 
 class CustomerRepository {
     getAllCustomers() {

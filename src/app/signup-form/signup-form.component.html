@@ -1,7 +1,5 @@
 <br><br>
-        <button class='btn btn-info' [routerLink]="['/login']">
-          Logout
-      </button>
+
 
 <br><br>
 <div class="container">
@@ -9,27 +7,33 @@
     <h1>Join Reddit!<a routerLink=""><img class="barimg" src="{{backimg}}"></a></h1>
     
     <h3>Create your personal account</h3>
-    <form class="form-group" [formGroup]='signupForm'>
+    <form [formGroup]="LoginForm">
       <div>
         <label for="email">Email<span class="ast"> *</span></label>
-        <input class="form-control" type="email" placeholder="Enter email" name="email"
-        formControlName="eMail"
-    [ngClass]="{'is-invalid': displayMessage.eMail }" #mail>
-    <div *ngIf="submitted && f.eMail.errors" class="invalid-feedback">
-      <div *ngIf="f.eMail.errors.required">Title is required</div>
-  </div>
+        <!-- <ng-template [ngIf]="LoginForm.controls['eMail'].invalid && (LoginForm.controls['eMail'].dirty || LoginForm.controls['eMail'].touched )"> -->
+        <input class="form-control"  type="email" placeholder="Enter email" formControlName="email">
+    <!-- <div *ngIf="submitted && f.eMail.errors" class="invalid-feedback"> -->
+      <div *ngIf="LoginForm.controls['email'].invalid && (LoginForm.controls['email'].dirty || LoginForm.controls['email'].touched )">
+          <div *ngIf="LoginForm.controls['email'].errors.required">Please enter valid email</div></div>
+  <!-- </div> -->
         
       </div>
       <div>
           <label for="text">Username<span class="ast"> *</span></label>
-          <input class="form-control" type="text" placeholder="Enter Username" name="n" #name>
+          <input class="form-control"  type="text" placeholder="Enter Username" formControlName="name">
+
+          <div *ngIf="LoginForm.controls['name'].invalid && (LoginForm.controls['name'].dirty || LoginForm.controls['name'].touched )">
+              <div *ngIf="LoginForm.controls['name'].errors.required">Please Enter User Name</div></div>
         
         </div>
 
       <div>
         <label for="pwd">Password<span class="ast"> *</span></label>
-        <input class="form-control" type="password" placeholder="Enter password" name="pswd" #pass>
+        <input class="form-control"  type="password" placeholder="Enter password" name="pswd" formControlName="password">
         
+        <div *ngIf="LoginForm.controls['password'].invalid && (LoginForm.controls['password'].dirty || LoginForm.controls['password'].touched )">
+            <div *ngIf="LoginForm.controls['password'].errors.required">Please enter password</div></div>
+
       </div>
       
       
@@ -38,7 +42,7 @@
           <input type="checkbox" name="remember">Remember me
         </label>
       </div>
-      <button type="button" class="btn btn-primary" [routerLink]="['/topicList']" (click)="postItem(mail.value,name.value,pass.value)">Submit</button>
+      <button type="button" class="btn btn-primary" [disabled]='getStatus()' (click)="postItem()">Submit</button>
       <!-- <input type="submit" value="Submit" [disabled]="!form.valid"> -->
     </form>
   </div>

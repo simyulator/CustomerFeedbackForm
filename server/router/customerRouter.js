@@ -1,5 +1,6 @@
 const customerRepository = require('../repository/customerRepository');
 const custLoginRepo = require('../repository/customerLoginRepository');
+const sendMail = require('../mailSender');
 
 module.exports = (app) => {
     app.get('/users', (req, res)=> {
@@ -19,14 +20,28 @@ module.exports = (app) => {
         customerRepository.addNewTopic(req.body)
         .then(data => res.json(data))
     })
+
+    app.post('/users/sendmail', (req, res) => {
+        console.log(req.body);
+        console.log(req.params.receipt);
+        sendMail(req.body);
+        
+    })
+
+    // app.post('/users/:receipt', (req, res) => {
+    //     sendMail().then(dd => res.json(dd));
+    // })
+
     app.delete('/users/:id', (req, res) => {
         customerRepository.remove(req.params.id)
         .then(data => res.json(data))
     })
     app.put('/users/:id', (req, res)=> {
+        sendMail()
         customerRepository.update(req.body, req.params.id)   //req.body will give us the json object and param.id will give us the value
         .then(data=> res.json(data));
     })
+    
     // app.get('/users/:id',(req,res)=>{
     //     console.log("In GET");
     //     console.log(req.params.id);

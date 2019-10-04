@@ -1,7 +1,7 @@
 <br><br>
-        <button class='btn btn-info' [routerLink]="['/login']">
-          Logout
-      </button>
+<button class='btn btn-info' (click)='logout()' >
+        Logout
+    </button>
 <div class="container">
     <div >
         <h1 style="text-align: center">{{pageTitle}}</h1><br>
@@ -11,7 +11,7 @@
             Add Feedback
         </button>
 
-        <button class="btn btn-primary" style="float: right; margin-right: 16px">
+        <button class="btn btn-primary" [routerLink]="['/sendmail', idOfTopic]" style="float: right; margin-right: 16px">
             Email Feedback
         </button>
 
@@ -30,6 +30,7 @@
             <tbody>
                 <!-- <ng-container *ngFor='let data of customerList'> -->
                     <tr *ngFor='let d of feedbackList'>
+                            <ng-template [ngIf]="d.feedID != '' ">
                             <td>{{ d.feedID }}</td>
                             <td>{{ d.respondent }}</td>
                             <td>{{d.feedback}}</td>
@@ -43,6 +44,7 @@
                                     Delete
                                 </button>
                             </td>
+                            </ng-template>
                             
                     </tr>
                 <!-- </ng-container> -->

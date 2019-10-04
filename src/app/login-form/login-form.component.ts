@@ -23,6 +23,7 @@ export class LoginFormComponent implements OnInit {
              ) { }
 
   ngOnInit() {
+    localStorage.clear();
   }
 
   loginUser(e) {
@@ -32,6 +33,7 @@ export class LoginFormComponent implements OnInit {
     const password = e.target[1].value;
     console.log(username, password);
     if (username === 'admin' && password === 'admin') {
+      
       // this.user.setUserLoggedIn();
       this.router.navigate(['dashbord']); }
 
@@ -50,16 +52,25 @@ export class LoginFormComponent implements OnInit {
     // console.log(this.email);
     // console.log(this.pass);
     this.loginservice.getLoginDataByMail(this.email).subscribe(d => {
+      console.log(d);
       this.loginItem = d[0];
       // console.log(this.loginItem.email);
-      console.log(d[0]);
-      this.access = true;
-      console.log(d[0].password + ' ' + this.pass1);
-      if (this.loginItem.password === this.pass1) {
-        console.log('In Pass');
-        this.flag = 1;
-        this.router.navigate(['/topicList']);
+      if (d[0] === undefined) {
+        alert('Enter Correct Username or Password');
+      } else {
+        console.log(d[0]);
+        this.access = true;
+        console.log(d[0].password + ' ' + this.pass1);
+        if (this.loginItem.password === this.pass1) {
+          console.log('In Pass');
+          localStorage.setItem('user', this.email);
+          this.flag = 1;
+          this.router.navigate(['/topicList']);
+        } else {
+          alert('Enter Correct Username or Password');
+        }
       }
+
 
     });
     console.log(this.loginItem);

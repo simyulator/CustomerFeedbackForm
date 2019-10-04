@@ -6,6 +6,7 @@ import { NumberValidators } from '../validator/number.validator';
 import { Observable, fromEvent, Subscription, merge } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { GenericValidator } from '../validator/generic-validator';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup-form',
@@ -15,13 +16,17 @@ import { GenericValidator } from '../validator/generic-validator';
 export class SignupFormComponent implements OnInit {
   @ViewChildren(FormControlName, { read: ElementRef }) formInputElements: ElementRef[];
 
+  mail1: string;
+  username1: string;
+  pass1: string;
   loginItem = {
     email: '',
     name: '',
     password: '',
   };
   logindata: ILoginData;
-  signupForm: FormGroup;
+  logindata1: ILoginData[] = [];
+  LoginForm: FormGroup;
   displayMessage: { [key: string]: string } = {};
   private genericValidator: GenericValidator;
 
@@ -29,7 +34,7 @@ export class SignupFormComponent implements OnInit {
   private validationMessages: { [key: string]: { [key: string]: string } };
   backimg = 'assets/image/logo.png';
   constructor(private loginService: CustomerService,
-              private fb: FormBuilder
+              private fb: FormBuilder, private router: Router
               ) {
 
                 this.validationMessages = {
@@ -56,16 +61,15 @@ export class SignupFormComponent implements OnInit {
     // this.loginItem.name = '';
     // this.loginItem.password = '';
 
-    this.signupForm = this.fb.group({
-      eMail: ['', [Validators.required]],
-      userName: ['', Validators.required],
+    this.LoginForm = this.fb.group({
+      email: ['', [Validators.required]],
+      name: ['', Validators.required],
       password: ['', [Validators.required,
         Validators.minLength(3),
         Validators.maxLength(50)]],
-      tags: this.fb.array([]),
-      description: ''
   });
 }
+
 
 // ngAfterViewInit(): void {
 //   // Watch for the blur event from any input element on the form.
@@ -82,19 +86,70 @@ export class SignupFormComponent implements OnInit {
 //   });
 //   }
 
-  postItem(mail: string, name: string, pass: string) {
-    console.log(mail);
-    console.log(name);
-    console.log(pass);
-    this.loginItem.email = mail;
-    this.loginItem.name = name;
-    this.loginItem.password = pass;
+  postItem() {
+    console.log(this.LoginForm.value);
+    // console.log(mail);
+    // console.log(name);
+    // console.log(pass);
+
+    this.loginItem.email = this.LoginForm.value.email;
+    this.loginItem.name = this.LoginForm.value.name;
+    this.loginItem.password = this.LoginForm.value.password;
     this.logindata = this.loginItem;
     console.log(this.logindata);
-    this.loginService.postLoginDataByMail(this.logindata).subscribe(d => console.log(d));
+    if(this.LoginForm.value.email ==='' && this.LoginForm.value.name === '' && this.LoginForm.value.password === ''){
+      alert('Enter Details');
+    }else{
+    this.loginService.getLoginDataByMail(this.LoginForm.value.email).subscribe(d => {
+      console.log(d);
+      let aa: Array<ILoginData> = [];
+      console.log(d[0]);
+      if (d[0] === undefined) {
+          console.log("In If")
+          this.loginService.postLoginDataByMail(this.LoginForm.value).subscribe(dd => {
+            this.router.navigate(['/login']);
+            console.log(dd);
+          });
+        //  else {
+        //   console.log("hgdsf")
+        //   alert('username already exists');
+        // }
+      } else {
+        console.log("LLLLL");
+        if (d[0].email === undefined) {
+          console.log("In If")
+          this.loginService.postLoginDataByMail(this.LoginForm.value).subscribe(dd => {
+            this.router.navigate(['/login']);
+            console.log(dd);
+          });
+        } else {
+          alert('username already exists');
+        }
+      }
+
+      // console.log(d[0].email);
+      // if (d[0].email === undefined) {
+      //   console.log("In If")
+      //   this.loginService.postLoginDataByMail(this.LoginForm.value).subscribe(dd => {
+      //     this.router.navigate(['/login']);
+      //     console.log(dd);
+      //   });
+      // } else {
+      //   alert('username already exists');
+      // }
+
+    });
+  }
   }
   get f(){
-    return this.signupForm.controls;
+    return this.LoginForm.controls;
+  }
+
+  getStatus() {
+    if(this.mail1 !== '' && this.username1 !== '' && this.pass1 !== ''){
+      return false;
+    }
+    return true;
   }
 
 }
