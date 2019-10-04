@@ -9,21 +9,24 @@ import { AddFeedbackComponent } from './add-feedback/add-feedback.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { SignupFormComponent } from './signup-form/signup-form.component';
 import { CustomerguardGuard } from './customerguard.guard';
+import { AuthServiceService } from './services/auth-service.service';
+import { EmailFeedbackComponent } from './email-feedback/email-feedback.component';
 
 
 const routes: Routes = [
-  {path: 'addTopic', component: TopicFormComponent},
+  {path: 'addTopic', component: TopicFormComponent, canActivate: [AuthServiceService]},
   // {path: '', component: TopicsListComponent},
   {path: 'topicList',
-  component: TopicsListComponent},
-  {path: 'editTopic', component: EditTopicComponent },
+  component: TopicsListComponent, canActivate: [AuthServiceService]},
+  {path: 'editTopic/:topicID', component: EditTopicComponent, canActivate: [AuthServiceService] },
   {path: '', component: LoginFormComponent},
-  {path: 'topicList', component: TopicsListComponent},
-  {path: 'feedback/:topicID', component: FeedbackListComponent},
-  {path: 'feedbackedit/:topicID/:feedID', component: FeedbackFormComponent},
-  {path: 'feedbackadd/:topicID', component: AddFeedbackComponent},
+  {path: 'topicList', component: TopicsListComponent, canActivate: [AuthServiceService]},
+  {path: 'feedback/:topicID', component: FeedbackListComponent, canActivate: [AuthServiceService]},
+  {path: 'feedbackedit/:topicID/:feedID', component: FeedbackFormComponent, canActivate: [AuthServiceService]},
+  {path: 'feedbackadd/:topicID', component: AddFeedbackComponent, canActivate: [AuthServiceService]},
   {path: 'login', component: LoginFormComponent},
-  {path: 'signup', component: SignupFormComponent}
+  {path: 'signup', component: SignupFormComponent},
+  {path: 'sendmail/:topicID', component: EmailFeedbackComponent}
 ];
 
 @NgModule({

@@ -1,7 +1,7 @@
 <br><br>
-        <button class='btn btn-info' [routerLink]="['/login']">
-          Logout
-      </button>
+<button class='btn btn-info' (click)='logout()' >
+        Logout
+    </button>
 
 <div class="container">
     <div class="topic-form">
@@ -12,7 +12,7 @@
                 <div class="form-group row mb-2">
                     <label class="col-md-2 col-form-label">Topic</label>
                     <div class="col-md-8">
-                        <input class="form-control" [(ngModel)]='topicTitle' name="topic" type="text" placeholder="Topic (required)" />
+                        <input class="form-control" [(ngModel)]='topicTitle'  name="topic" type="text" placeholder="Topic (required)" />
                         <span>
                             <!-- {{displayMessage.topic}} -->
                         </span>

@@ -15,6 +15,7 @@ import { EditTopicComponent } from './edit-topic-component/edit-topic-component.
 import { LoginFormComponent } from './login-form/login-form.component';
 import { AuthServiceService } from './services/auth-service.service';
 import { CustomerguardGuard } from './customerguard.guard';
+import { EmailFeedbackComponent } from './email-feedback/email-feedback.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { CustomerguardGuard } from './customerguard.guard';
     EditTopicComponent,
     LoginFormComponent,
     AddFeedbackComponent,
-    SignupFormComponent
+    SignupFormComponent,
+    EmailFeedbackComponent
   ],
   imports: [
     BrowserModule,

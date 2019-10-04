@@ -16,7 +16,7 @@ export class TopicsListComponent implements OnInit {
   topicEditForm: FormGroup;
   id: number;
   // tslint:disable-next-line: variable-name
-  constructor(private fb: FormBuilder, private router: Router, private _customerService: CustomerService) { }
+  constructor(private fb: FormBuilder, private router: Router, private _customerService: CustomerService  ) { }
 
   ngOnInit() {
     this._customerService.getCustomerData()
@@ -26,6 +26,7 @@ export class TopicsListComponent implements OnInit {
   }
 
   deleteTopic(id: number): void {
+    console.log(id);
     this.id = id;
     // this.deleteFeedback();
     if (confirm(`Really delete this topic?`)) {
@@ -40,6 +41,7 @@ export class TopicsListComponent implements OnInit {
 
   deleteFeedback() {
     // this.idFeed = feedID;
+    console.log("lll");
     this.customers.forEach(c => {
       if (c.topicID === this.id) {
             this.deleteByAttr(this.customers, 'topicID', this.id);
@@ -59,5 +61,9 @@ export class TopicsListComponent implements OnInit {
        }
     }
     return arr;
+  }
+  logout()  {
+    localStorage.clear();
+    this.router.navigate(['/login']);
   }
 }

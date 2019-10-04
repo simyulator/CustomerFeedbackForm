@@ -1,0 +1,49 @@
+<div class="container">
+        <div class="email-form">
+            <h1 style="text-align: center">Send feedback</h1>
+            
+            <div>
+                <form>
+                    <div class="form-group row mb-2">
+                        <label class="col-md-2 col-form-label">To: </label>
+                        <div class="col-md-8">
+                            <input [(ngModel)]='to' name="to" class="form-control"  type="text" />
+                        </div>
+                    </div>     
+                    <!-- <div class="form-group row mb-2">
+                        <label class="col-md-2 col-form-label">CC: </label>
+                        <div class="col-md-8">
+                            <input class="form-control" type="text"/>
+                        </div>
+                    </div> -->
+                    <div class="form-group row mb-2">
+                            <label class="col-md-2 col-form-label">From: </label>
+                            <div class="col-md-8">
+                                <input class="form-control" type="text"/>
+                            </div>
+                    </div>
+                    <div class="form-group row mb-2">
+                            <label class="col-md-2 col-form-label">Subject: </label>
+                            <div class="col-md-8">
+                                <input class="form-control" [(ngModel)]='subject' name="sub" type="text"/>
+                            </div>
+                    </div>
+                    <div class="form-group row mb-2">
+                            <label class="col-md-2 col-form-label">Feedback: </label>
+                            <div class="col-md-8">
+                                <input class="form-control" [(ngModel)]='feedback' name="feed" type="text"/>
+                            </div>
+                    </div>
+                    <button class="btn btn-primary mr-3" style="width:80px;" type="submit" (click)='sendMail()'>
+                        Submit
+                    </button>
+                </form>
+            </div>   
+            
+        </div>
+        <br>
+        <button class='btn btn-info' [routerLink]="['/feedback', idTopic]">
+            Back To Feedback List
+        </button>
+    </div>
+    

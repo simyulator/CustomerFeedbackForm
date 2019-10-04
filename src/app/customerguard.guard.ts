@@ -21,12 +21,12 @@ export class CustomerguardGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-      const loogedIn = this.sec.getUserLoggedIn();
-      if (!loogedIn) {
+      // const loogedIn = this.sec.getUserLoggedIn();
+      // if (!loogedIn) {
         // this.router.navigate(['/login']);
-      }
-      this.sec.setUserLoggedIn();
-      return loogedIn;
+      // }
+      // this.sec.setUserLoggedIn();
+      // return loogedIn;
     //   if (localStorage.getItem('currentUser')) {
     //     // logged in so return true
     //     return true;
@@ -35,5 +35,6 @@ export class CustomerguardGuard implements CanActivate {
     // // not logged in so redirect to login page with the return url
     //   this.router.navigate(['/login'], { queryParams: { returnUrl: state.url }});
     //   return false;  }
+    return true;
 }
 }

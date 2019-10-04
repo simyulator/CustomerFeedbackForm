@@ -99,5 +99,11 @@ export class AddFeedbackComponent implements OnInit {
     });
   }
 
+  getStatus(){
+    if(this.newFed !== '' && this.newmail !== '' && this.newRes !== ''){
+      return false;
+    }
+    return true;
+  }
 
 }

@@ -4,6 +4,7 @@ import { Observable, pipe, throwError } from 'rxjs';
 import {ICustomer} from '../model/customermodel';
 import { tap, catchError, map } from 'rxjs/operators';
 import { ILoginData } from '../model/loginmodel';
+import { IMail } from '../model/mailmodel';
 // import { IHouseModel } from '../model/houseModel';
 
 @Injectable({
@@ -40,6 +41,7 @@ export class CustomerService {
   // }
 
   deleteTopic(topicID: number): Observable<{}> {
+    console.log(topicID);
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const url = `http://localhost:3000/users/${topicID}`;
     console.log('url = ' + url);
@@ -86,6 +88,14 @@ export class CustomerService {
 
     const headers = new HttpHeaders({'Content-Type': 'application/json'}); // MIME TYPE
     return this._httpclient.post<ICustomer>(`http://localhost:3000/users`, customer, {headers})
+    .pipe(tap (data => console.log('Create Product is Successful' + JSON.stringify(data))),
+    catchError(this.handleError));
+  }
+
+  public sendMail(mail: IMail): Observable<IMail> {
+
+    const headers = new HttpHeaders({'Content-Type': 'application/json'}); // MIME TYPE
+    return this._httpclient.post<IMail>(`http://localhost:3000/users/sendmail`, mail, {headers})
     .pipe(tap (data => console.log('Create Product is Successful' + JSON.stringify(data))),
     catchError(this.handleError));
   }
