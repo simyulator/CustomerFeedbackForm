@@ -10,6 +10,8 @@ import { IMail } from '../model/mailmodel';
   templateUrl: './email-feedback.component.html',
   styleUrls: ['./email-feedback.component.css']
 })
+
+//Sends Mail to the user with feedback
 export class EmailFeedbackComponent implements OnInit {
 
   subject: string;
@@ -61,7 +63,9 @@ export class EmailFeedbackComponent implements OnInit {
     this.router.navigate(['/feedback/' + this.idTopic]);
 
   }
-  sendMail(){
+
+  // Calls the service method in services/Service.ts
+  sendMail() {
     this.mailOptions.to = this.to;
     this.mailOptions.subject = this.subject;
     this.mailOptions.text = this.feedback;
@@ -72,6 +76,7 @@ export class EmailFeedbackComponent implements OnInit {
     });
   }
 
+  // Unables or Disables the button
   getButtonStatus() {
     if (this.to !== '' && this.subject !== '' && this.feedback !== '') {
       return false;
