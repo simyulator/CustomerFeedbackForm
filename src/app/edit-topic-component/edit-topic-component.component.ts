@@ -10,6 +10,8 @@ import { Subscription } from 'rxjs';
   templateUrl: './edit-topic-component.component.html',
   styleUrls: ['./edit-topic-component.component.css']
 })
+
+// This file edits the topic
 export class EditTopicComponent implements OnInit {
 
   pageTitle = '';
