@@ -46,7 +46,7 @@ export class EmailFeedbackComponent implements OnInit {
             this.idTopic = +params.get('topicID');
             this.idFeed = +params.get('feedID');
             // this.editCustomerData(idOfTopic);
-            this.sendMail();
+            // this.sendMail();
           }
         );
       }
@@ -54,14 +54,29 @@ export class EmailFeedbackComponent implements OnInit {
 
   }
 
-  sendMail() {
+  notify() {
 
+    console.log("In sendmail")
+    alert('Feedback sent to ' + this.to + '. Redirecting.');
+    this.router.navigate(['/feedback/' + this.idTopic]);
+
+  }
+  sendMail(){
     this.mailOptions.to = this.to;
     this.mailOptions.subject = this.subject;
     this.mailOptions.text = this.feedback;
     this.mailOP = this.mailOptions;
-    this._topicService.sendMail(this.mailOP).subscribe(d => console.log(d));
+    this._topicService.sendMail(this.mailOP).subscribe(d => {
 
+      console.log(d);
+    });
+  }
+
+  getButtonStatus() {
+    if (this.to !== '' && this.subject !== '' && this.feedback !== '') {
+      return false;
+    }
+    return true;
   }
 
 }
